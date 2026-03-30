@@ -1,0 +1,31 @@
+	# Network capture
+scapy==2.5.0
+pyshark==0.6.0
+
+# Data processing
+numpy==1.24.3
+pandas==2.0.3
+
+# Machine learning
+scikit-learn==1.3.0
+joblib==1.3.2
+
+# Configuration
+pyyaml==6.0.1
+
+# Web dashboard
+flask==3.0.0
+flask-socketio==5.3.6
+
+# Logging & utilities
+colorlog==6.7.0
+python-dotenv==1.0.0
+
+# Snort rule parsing
+idstools==0.6.5
+
+# Real time data
+eventlet==0.33.3
+
+# Testing
+pytest==7.4.3

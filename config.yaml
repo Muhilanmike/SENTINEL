@@ -1,0 +1,77 @@
+# Sentinel AI-IDS Configuration
+
+project:
+  name: sentinel
+  version: "1.0.0"
+  description: "AI-based Intrusion Detection System"
+
+network:
+  interface: "eth0"
+  capture_timeout: 60
+  max_packets: 10000
+  bpf_filter: "ip"
+
+snort:
+  config_path: "snort/configs/snort.conf"
+  rules_path: "snort/rules/local.rules"
+  alert_log: "data/logs/snort_alerts.log"
+
+ml:
+  random_forest:
+    n_estimators: 100
+    max_depth: 20
+    min_samples_split: 5
+    model_path: "models/saved/random_forest.pkl"
+
+  isolation_forest:
+    n_estimators: 100
+    contamination: 0.1
+    max_samples: "auto"
+    model_path: "models/saved/isolation_forest.pkl"
+
+  threshold:
+    rf_confidence: 0.7
+    if_anomaly_score: -0.1
+
+whitelist:
+  ips:
+    - "185.125.190.56"
+    - "185.125.190.57"
+    - "185.125.190.58"
+    - "91.189.91.157"
+    - "91.189.94.4"
+    - "172.21.144.1"
+    - "224.0.0.251"
+    - "224.0.0.252"
+    - "239.255.255.250"
+    - "172.21.159.255"
+    - "255.255.255.255"
+  ip_ranges:
+    - "224.0.0.0/4"      # All multicast
+    - "169.254.0.0/16"   # Link-local
+  ports:
+    - 137   # NetBIOS Name
+    - 138   # NetBIOS Datagram
+    - 139   # NetBIOS Session
+    - 1900  # UPnP/SSDP
+    - 5353  # mDNS
+    - 5355  # LLMNR
+
+alerts:
+  severity_levels:
+    - LOW
+    - MEDIUM
+    - HIGH
+    - CRITICAL
+  log_path: "data/logs/alerts.log"
+  max_log_size_mb: 100
+
+dashboard:
+  host: "0.0.0.0"
+  port: 5000
+  debug: false
+
+logging:
+  level: "INFO"
+  file: "data/logs/sentinel.log"
+  max_size_mb: 50
