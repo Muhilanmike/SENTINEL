@@ -49,6 +49,8 @@ whitelist:
   ip_ranges:
     - "224.0.0.0/4"      # All multicast
     - "169.254.0.0/16"   # Link-local
+    - "91.189.0.0/16"    # Canonical/Ubuntu servers
+    - "185.125.190.0/24" # Ubuntu NTP servers
   ports:
     - 137   # NetBIOS Name
     - 138   # NetBIOS Datagram
